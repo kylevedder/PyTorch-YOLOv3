@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import matplotlib
+matplotlib.use('Agg')
 from flask import Flask, request
 import pickle
 from models import *
