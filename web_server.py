@@ -168,4 +168,4 @@ def result():
     
     return "Success: " + ", ".join(class_lst)
 
-app.run(debug=True, port=5000)
+app.run(debug=False, port=5000)
