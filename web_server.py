@@ -25,6 +25,7 @@ import matplotlib.patches as patches
 from matplotlib.ticker import NullLocator
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--hostname", type=str, default="localhost", help="Server hostname")
 parser.add_argument("--model_def", type=str, default="config/yolov3.cfg", help="path to model definition file")
 parser.add_argument("--weights_path", type=str, default="weights/yolov3.weights", help="path to weights file")
 parser.add_argument("--class_path", type=str, default="data/coco.names", help="path to class label file")
@@ -168,4 +169,4 @@ def result():
     
     return "Success: " + ", ".join(class_lst)
 
-app.run(debug=False, port=5000)
+app.run(opt.hostname, debug=False, port=5000)
