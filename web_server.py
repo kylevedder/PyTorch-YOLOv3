@@ -29,8 +29,8 @@ from matplotlib.ticker import NullLocator
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--hostname", type=str, default="localhost", help="Server hostname")
-parser.add_argument("--model_def", type=str, default="config/yolov3-tiny.cfg", help="path to model definition file")
-parser.add_argument("--weights_path", type=str, default="weights/yolov3-tiny.weights", help="path to weights file")
+parser.add_argument("--model_def", type=str, default="config/yolov3.cfg", help="path to model definition file")
+parser.add_argument("--weights_path", type=str, default="weights/yolov3.weights", help="path to weights file")
 parser.add_argument("--class_path", type=str, default="data/coco.names", help="path to class label file")
 parser.add_argument("--conf_thres", type=float, default=0.8, help="object confidence threshold")
 parser.add_argument("--nms_thres", type=float, default=0.4, help="iou thresshold for non-maximum suppression")
@@ -168,7 +168,7 @@ def result():
     webcam = np.expand_dims(webcam, axis=0)        
     webcam = torch.from_numpy(webcam)
     detections = detect_image(webcam)
-    class_lst = draw_detections(renderable_webcam, detections, f"webcam_output/webcam{call_idx}.png")
+    class_lst = draw_detections(renderable_webcam, detections, f"webcam_output/webcam{call_idx:05}.png")
     call_idx += 1
     end = timer()
     
