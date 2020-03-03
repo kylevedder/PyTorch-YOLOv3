@@ -6,6 +6,7 @@ import pickle
 from models import *
 from utils.utils import *
 from utils.datasets import *
+from timeit import default_timer as timer
 
 import os
 import sys
@@ -156,6 +157,7 @@ call_idx = 0
 @app.route('/', methods=['POST'])
 def result():
     global call_idx
+    start = timer()
     webcam = pickle.loads(request.data)
     webcam = np.flip(webcam, 2).copy()
     renderable_webcam = webcam.copy()
@@ -168,7 +170,9 @@ def result():
     detections = detect_image(webcam)
     class_lst = draw_detections(renderable_webcam, detections, f"webcam_output/webcam{call_idx}.png")
     call_idx += 1
+    end = timer()
     
+    print("Delta t: ", end - start)
     return "Success: " + ", ".join(class_lst)
 
 app.run(opt.hostname, debug=False, port=5000)
